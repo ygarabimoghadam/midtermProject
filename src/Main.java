@@ -39,12 +39,8 @@ public class Main extends Component {
         Main m = new Main();
        // m.changeLookAndFeel();
         choiceOfType choice = new choiceOfType();
-        choice.makeItems();
-        Admin a = new Admin();
-       // a.packAdmin();
-        Teacher mi= new Teacher();
-       // mi.packTeacher();
-        Student s = new Student();
-       // s.packStudent();
+       // choice.makeItems();
+        Meal me = new Meal();
+        me.packDinner();
     }
 }

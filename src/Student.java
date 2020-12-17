@@ -64,5 +64,4 @@ public class Student {
         studPanel.setBackground(Color.black);
         stud.setVisible(true);
     }
-
 }

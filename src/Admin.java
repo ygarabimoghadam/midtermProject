@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.HashMap;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Admin {
     private JFrame adm ;
@@ -15,11 +16,12 @@ public class Admin {
     private JButton addS;
     private JButton addT;
     private JButton logOut;
-    private HashMap<String,String> myAdmins;
+    private String myUser;
+    private ChangePassword myChange = new ChangePassword();
 
-    public Admin(){
-
-        adm = new JFrame("Portal/admin section");
+    public Admin(String us){
+        myUser = us;
+        adm = new JFrame("Portal/section");
         adPanel = new JPanel();
         type = new JTextField("Admin section:choose ");
         changePass = new JButton("Change Password");
@@ -31,7 +33,6 @@ public class Admin {
         addS= new JButton("Add Student");
         addT = new JButton("Add Teacher");
         logOut = new JButton("Logout");
-        myAdmins = new HashMap<>();
     }
 
     private void makeFrame(){
@@ -72,21 +73,41 @@ public class Admin {
         logOut.setBounds(120,280,150,25);
         logOut.setBackground(Color.MAGENTA);
         adPanel.add(logOut);
+
+    }
+
+    private void buttonActions() {
+        changePass.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                adm.setVisible(false);
+                myChange.packPass(myUser);
+            }
+        });
+
+        changeUsername.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                adm.setVisible(false);
+                myChange.packUser(myUser);
+            }
+        });
+
+        setMeal.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                adm.setVisible(false);
+
+            }
+        });
     }
 
     public void packAdmin(){
         makeFrame();
         makeButton();
+        buttonActions();
         adm.getContentPane().add(adPanel);
         adPanel.setBackground(Color.BLACK);
         adm.setVisible(true);
-    }
-
-    public HashMap<String, String> getMyAdmins() {
-        return myAdmins;
-    }
-
-    public void setMAp(){
-        
     }
 }

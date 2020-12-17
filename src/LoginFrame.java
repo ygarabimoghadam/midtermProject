@@ -15,6 +15,8 @@ public class LoginFrame {
    private JTextArea section ;
    private JButton logButton;
    private JButton btnGet ;
+   private String myPass ;
+   private String myUser ;
 
 
    public LoginFrame(){
@@ -86,14 +88,14 @@ public class LoginFrame {
                 Scanner scanner;
                 String loginn = "";
                 String passwordd = null;
-                String pass = new String(pfPassword.getPassword());
-                String user = userText.getText();
+                 myPass = new String(pfPassword.getPassword());
+                 myUser = userText.getText();
                 if ((section.getText()).equals("  Admin section")) {
                     try {
                         file = new File("C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\myAdmin.txt");
                         scanner = new Scanner(file);
 
-                        while (!(loginn.equals(user))) {
+                        while (!(loginn.equals(myUser))) {
                             loginn = scanner.nextLine();
                         }
                         passwordd = scanner.nextLine();
@@ -102,10 +104,10 @@ public class LoginFrame {
                         er.printStackTrace();
                     }
 
-                    if (pass.equals(passwordd)) {
+                    if (myPass.equals(passwordd)) {
                         System.out.print("done");
                         log.setVisible(false);
-                        Admin ad = new Admin();
+                        Admin ad = new Admin(myUser);
                         ad.packAdmin();
                         //add new frame here
                     }
@@ -125,7 +127,7 @@ public class LoginFrame {
                         file = new File("C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\myTeacher.txt");
                         scanner = new Scanner(file);
 
-                        while (!(loginn.equals(user))) {
+                        while (!(loginn.equals(myUser))) {
                             loginn = scanner.nextLine();
                         }
                         passwordd = scanner.nextLine();
@@ -134,7 +136,7 @@ public class LoginFrame {
                         er.printStackTrace();
                     }
 
-                    if (pass.equals(passwordd)) {
+                    if (myPass.equals(passwordd)) {
                         System.out.print("done");
                         log.setVisible(false);
                         Teacher myTeacher = new Teacher();
@@ -156,7 +158,7 @@ public class LoginFrame {
                         file = new File("C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\myStudent.txt");
                         scanner = new Scanner(file);
 
-                        while (!(loginn.equals(user))) {
+                        while (!(loginn.equals(myUser))) {
                             loginn = scanner.nextLine();
                         }
                         passwordd = scanner.nextLine();
@@ -165,8 +167,10 @@ public class LoginFrame {
                         er.printStackTrace();
                     }
 
-                    if (pass.equals(passwordd)) {
+                    if (myPass.equals(passwordd)) {
+
                         System.out.print("done");
+
                         log.setVisible(false);
                         Student myStudent = new Student();
                         myStudent.packStudent();
