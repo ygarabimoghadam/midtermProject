@@ -18,6 +18,8 @@ public class Admin {
     private JButton logOut;
     private String myUser;
     private ChangePassword myChange = new ChangePassword();
+    private Meal mealForWeak = new Meal();
+    private Add addStudent = new Add();
 
     public Admin(String us){
         myUser = us;
@@ -97,7 +99,30 @@ public class Admin {
             @Override
             public void actionPerformed(ActionEvent e) {
                 adm.setVisible(false);
+                mealForWeak.packMeal();
+            }
+        });
 
+        addS.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                adm.setVisible(false);
+                addStudent.packAddStudents();
+
+            }
+        });
+
+        addT.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                adm.setVisible(false);
+                addStudent.packAddTeachers();
+            }
+        });
+        logOut.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                adm.setVisible(false);
             }
         });
     }

@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-
 import static java.lang.System.err;
 
 public class Main extends Component {
@@ -39,8 +38,9 @@ public class Main extends Component {
         Main m = new Main();
        // m.changeLookAndFeel();
         choiceOfType choice = new choiceOfType();
-       // choice.makeItems();
+        choice.makeItems();
         Meal me = new Meal();
-        me.packDinner();
+     //   me.packDinner();
+
     }
 }

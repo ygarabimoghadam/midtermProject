@@ -1,7 +1,9 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ChangePassword {
     private JFrame change ;
@@ -25,6 +27,7 @@ public class ChangePassword {
     private JTextField newUser;
     private String nextUser;
     private String realUser;
+    private LogOutAdmin load = new LogOutAdmin();
 
     public ChangePassword() {
 
@@ -52,13 +55,14 @@ public class ChangePassword {
          changePanel.add(back);
          back.addActionListener(new ActionListener() {
              @Override
-             public void actionPerformed(ActionEvent e) {
+             public void actionPerformed(ActionEvent e)  {
                  if(name.startsWith("a")){
                      Admin ad = new Admin(name);
                      change.setVisible(false);
                      ad.packAdmin();
                      myAdmins.put(name,newPassword);
-                     System.out.println(myAdmins.get(name));
+                     String fileName = "C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\myAdmin.ser";
+                    load.writeFiles(myAdmins,fileName);
                  }
              }
          });
@@ -102,7 +106,10 @@ public class ChangePassword {
                  pr = new String(passwordRepeat.getPassword());
                  if(p.length()<8){
                      JOptionPane.showMessageDialog(change,
-                             "please enter both sameThings");
+                             "password must include 8 chars at least");
+                     password.setText("");
+                     passwordRepeat.setText("");
+
                  }
                  if(pr.equals(p)){
                      JOptionPane.showMessageDialog(change,
@@ -176,4 +183,9 @@ public class ChangePassword {
         changeU.getContentPane().add(UPanel);
         changeU.setVisible(true);
     }
+
+    public HashMap<String, String> getMyAdmins() {
+        return myAdmins;
+    }
+
 }

@@ -1,5 +1,11 @@
+import sun.rmi.runtime.Log;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.util.HashMap;
 
 public class Meal {
    private JFrame whichMeal;
@@ -74,8 +80,17 @@ public class Meal {
       private JMenu MDMenu;
       private JMenuItem dmBack;
       private JMenuItem dmBackM;
+       boolean lunchH;
+       boolean dinnerR;
+       private HashMap<Integer,String> lunchForWeak;
+       private HashMap<Integer,String> dinnerForWeak;
+       private int l;
+       private int d;
+       private LogOutAdmin load = new LogOutAdmin();
+       private String FileForLunch = "C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\Lunch.txt";
+       private String FileForDinner = "C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\Dinner.txt";
 
-     public Meal(){
+       public Meal(){
         whichMeal = new JFrame("set meal section");
         whmPanel = new JPanel();
         lunch = new JLabel("lunch");
@@ -148,6 +163,8 @@ public class Meal {
          MDMenu = new JMenu("options");
          dmBack = new JMenuItem("back");
          dmBackM = new JMenuItem("back to main menu");
+         lunchForWeak = new HashMap<>();
+         dinnerForWeak = new HashMap<>();
      }
 
     private void makeItemForMeal(){
@@ -166,7 +183,31 @@ public class Meal {
         whmPanel.add(DButton);
         menu.add(back);
         menuBar.add(menu);
-    }
+        lButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                whichMeal.setVisible(false);
+                packDay();
+                lunchH = true;
+            }});
+        DButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                whichMeal.setVisible(false);
+                packDay();
+                dinnerR = true;
+            }
+        });
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                whichMeal.setVisible(false);
+                Admin ad = new Admin("");
+                ad.packAdmin();
+            }
+        });
+        back.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.ALT_MASK));
+     }
 
     public void packMeal(){
         makeItemForMeal();
@@ -174,6 +215,7 @@ public class Meal {
         whichMeal.getContentPane().add(whmPanel);
         whichMeal.setJMenuBar(menuBar);
         whichMeal.setVisible(true);
+
     }
 
     private void makeItemForDays(){
@@ -212,7 +254,87 @@ public class Meal {
         dMenu.add(dBack);
         dMenu.add(dBackM);
         dMenuBar.add(dMenu);
-    }
+        d1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                whichDay.setVisible(false);
+                if(lunchH){
+                    packLunch();
+                    l=1;}
+                else{
+                    packDinner();
+                     d=1;}
+            }
+        });
+
+        d2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                whichDay.setVisible(false);
+                if(lunchH){
+                    packLunch();
+                    l=2;}
+                else{
+                    packDinner();
+                    d=2;}
+            }
+        });
+
+        d3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                whichDay.setVisible(false);
+                if(lunchH){
+                    packLunch();
+                    l=3;}
+                else{
+                    packDinner();
+                    d=3;}
+            }
+        });
+
+        d4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                whichDay.setVisible(false);
+                if(lunchH){
+                    packLunch();
+                    l=4;}
+                else{
+                    packDinner();
+                    d=4;}
+            }
+        });
+
+        d5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                whichDay.setVisible(false);
+                if(lunchH){
+                    packLunch();
+                    l=5;}
+                else{
+                    packDinner();
+                    d=5;}
+            }
+        });
+        dBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                whichDay.setVisible(false);
+                packMeal();
+            }
+        });
+        dBackM.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                whichDay.setVisible(false);
+                Admin ad = new Admin("");
+                ad.packAdmin();
+            }
+        });
+        dBackM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.ALT_MASK));
+     }
 
     public void packDay(){
         makeItemForDays();
@@ -222,58 +344,153 @@ public class Meal {
         whichDay.setVisible(true);
     }
 
-    private void makeItemForLunch(){
-         lunchMeal.setSize(270,350);
-         lmPanel.setLayout(null);
-         questionL.setEditable(false);
-         questionL.setBounds(5,5,80,20);
-         lmPanel.add(questionL);
-         ml1.setBounds(20,30,110,20);
-         lmPanel.add(ml1);
-         bl1.setBounds(100,30,110,25);
-         bl1.setBackground(Color.CYAN);
-         lmPanel.add(bl1);
-         ml2.setBounds(20,60,110,20);
-         lmPanel.add(ml2);
-         bl2.setBounds(100,60,110,25);
-         bl2.setBackground(Color.CYAN);
-         lmPanel.add(bl2);
-         ml3.setBounds(20,90,110,20);
-         lmPanel.add(ml3);
-         bl3.setBounds(100,90,110,25);
-         bl3.setBackground(Color.CYAN);
-         lmPanel.add(bl3);
-         ml4.setBounds(20,120,110,20);
-         lmPanel.add(ml4);
-         bl4.setBounds(100,120,110,25);
-         bl4.setBackground(Color.CYAN);
-         lmPanel.add(bl4);
-         ml5.setBounds(20,150,110,20);
-         lmPanel.add(ml5);
-         bl5.setBounds(100,150,110,25);
-         bl5.setBackground(Color.CYAN);
-         lmPanel.add(bl5);
-         ml6.setBounds(20,180,110,20);
-         lmPanel.add(ml6);
-         bl6.setBounds(100,180,110,25);
-         bl6.setBackground(Color.CYAN);
-         lmPanel.add(bl6);
-         ml7.setBounds(20,210,110,20);
-         lmPanel.add(ml7);
-         bl7.setBounds(100,210,110,25);
-         bl7.setBackground(Color.CYAN);
-         lmPanel.add(bl7);
-         ml8.setBounds(20,240,110,20);
-         lmPanel.add(ml8);
-         bl8.setBounds(100,240,110,25);
-         bl8.setBackground(Color.CYAN);
-         lmPanel.add(bl8);
-         MLMenu.add(lBack);
-         MLMenu.add(lBackM);
-         MLMenuBar.add(MLMenu);
+    private void makeItemForLunch() {
+        lunchMeal.setSize(270, 350);
+        lmPanel.setLayout(null);
+        questionL.setEditable(false);
+        questionL.setBounds(5, 5, 80, 20);
+        lmPanel.add(questionL);
+        ml1.setBounds(20, 30, 110, 20);
+        lmPanel.add(ml1);
+        bl1.setBounds(100, 30, 110, 25);
+        bl1.setBackground(Color.CYAN);
+        lmPanel.add(bl1);
+        ml2.setBounds(20, 60, 110, 20);
+        lmPanel.add(ml2);
+        bl2.setBounds(100, 60, 110, 25);
+        bl2.setBackground(Color.CYAN);
+        lmPanel.add(bl2);
+        ml3.setBounds(20, 90, 110, 20);
+        lmPanel.add(ml3);
+        bl3.setBounds(100, 90, 110, 25);
+        bl3.setBackground(Color.CYAN);
+        lmPanel.add(bl3);
+        ml4.setBounds(20, 120, 110, 20);
+        lmPanel.add(ml4);
+        bl4.setBounds(100, 120, 110, 25);
+        bl4.setBackground(Color.CYAN);
+        lmPanel.add(bl4);
+        ml5.setBounds(20, 150, 110, 20);
+        lmPanel.add(ml5);
+        bl5.setBounds(100, 150, 110, 25);
+        bl5.setBackground(Color.CYAN);
+        lmPanel.add(bl5);
+        ml6.setBounds(20, 180, 110, 20);
+        lmPanel.add(ml6);
+        bl6.setBounds(100, 180, 110, 25);
+        bl6.setBackground(Color.CYAN);
+        lmPanel.add(bl6);
+        ml7.setBounds(20, 210, 110, 20);
+        lmPanel.add(ml7);
+        bl7.setBounds(100, 210, 110, 25);
+        bl7.setBackground(Color.CYAN);
+        lmPanel.add(bl7);
+        ml8.setBounds(20, 240, 110, 20);
+        lmPanel.add(ml8);
+        bl8.setBounds(100, 240, 110, 25);
+        bl8.setBackground(Color.CYAN);
+        lmPanel.add(bl8);
+        MLMenu.add(lBack);
+        MLMenu.add(lBackM);
+        MLMenuBar.add(MLMenu);
+        bl1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lunchForWeak.put(l, ml1.getText());
+                load.writeFileForMeals(lunchForWeak,FileForLunch);
+                JOptionPane.showMessageDialog(lunchMeal, "food pick for day " +l);
+
+
+            }
+        });
+        bl2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lunchForWeak.put(l, ml2.getText());
+                load.writeFileForMeals(lunchForWeak,FileForLunch);
+                JOptionPane.showMessageDialog(lunchMeal,"food pick for day "+l);
+
+            }
+        });
+
+        bl3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lunchForWeak.put(l, ml3.getText());
+                load.writeFileForMeals(lunchForWeak,FileForLunch);
+                JOptionPane.showMessageDialog(lunchMeal,"food pick for day "+l);
+
+            }
+        });
+
+        bl4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lunchForWeak.put(l, ml4.getText());
+                load.writeFileForMeals(lunchForWeak,FileForLunch);
+                JOptionPane.showMessageDialog(lunchMeal,"food pick for day "+l);
+
+            }
+        });
+
+        bl5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lunchForWeak.put(l, ml5.getText());
+                load.writeFileForMeals(lunchForWeak,FileForLunch);
+                JOptionPane.showMessageDialog(lunchMeal,"food pick for day "+l);
+
+            }
+        });
+
+        bl6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lunchForWeak.put(l, ml6.getText());
+                load.writeFileForMeals(lunchForWeak,FileForLunch);
+                JOptionPane.showMessageDialog(lunchMeal,"food pick for day "+l);
+
+            }
+        });
+
+        bl7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lunchForWeak.put(l, ml7.getText());
+                load.writeFileForMeals(lunchForWeak,FileForLunch);
+                JOptionPane.showMessageDialog(lunchMeal,"food pick for day "+l);
+
+            }
+        });
+
+        bl8.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lunchForWeak.put(l, ml1.getText());
+                load.writeFileForMeals(lunchForWeak,FileForLunch);
+                JOptionPane.showMessageDialog(lunchMeal,"food pick for day "+l);
+
+            }
+        });
+        lBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lunchMeal.setVisible(false);
+                whichDay.setVisible(true);
+            }
+        });
+        lBackM.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lunchMeal.setVisible(false);
+                Admin ad = new Admin("");
+                ad.packAdmin();
+            }
+        });
+        lBackM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.ALT_MASK));
      }
 
-    public void packLunch(){
+     public void packLunch(){
          makeItemForLunch();
          lmPanel.setBackground(Color.white);
          lunchMeal.getContentPane().add(lmPanel);
@@ -330,6 +547,86 @@ public class Meal {
         MDMenu.add(dmBack);
         MDMenu.add(dmBackM);
         MDMenuBar.add(MDMenu);
+        bd1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dinnerForWeak.put(d, md1.getText());
+                load.writeFileForMeals(dinnerForWeak,FileForDinner);
+                JOptionPane.showMessageDialog(dinnerMeal,"food pick for day "+d);
+            }
+        });
+        bd2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dinnerForWeak.put(d, md2.getText());
+                load.writeFileForMeals(dinnerForWeak,FileForDinner);
+                JOptionPane.showMessageDialog(dinnerMeal,"food pick for day "+d);
+            }
+        });
+        bd3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dinnerForWeak.put(d, md3.getText());
+                load.writeFileForMeals(dinnerForWeak,FileForDinner);
+                JOptionPane.showMessageDialog(dinnerMeal,"food pick for day "+d);
+            }
+        });
+        bd4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dinnerForWeak.put(d, md4.getText());
+                load.writeFileForMeals(dinnerForWeak,FileForDinner);
+                JOptionPane.showMessageDialog(dinnerMeal,"food pick for day "+d);
+            }
+        });
+        bd5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dinnerForWeak.put(d, md5.getText());
+                load.writeFileForMeals(dinnerForWeak,FileForDinner);
+                JOptionPane.showMessageDialog(dinnerMeal,"food pick for day "+d);
+            }
+        });
+        bd6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dinnerForWeak.put(d, md6.getText());
+                load.writeFileForMeals(dinnerForWeak,FileForDinner);
+                JOptionPane.showMessageDialog(dinnerMeal,"food pick for day "+d);
+            }
+        });
+        bd7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dinnerForWeak.put(d, md7.getText());
+                load.writeFileForMeals(dinnerForWeak,FileForDinner);
+                JOptionPane.showMessageDialog(dinnerMeal,"food pick for day "+d);
+            }
+        });
+        bd8.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dinnerForWeak.put(d, md8.getText());
+                load.writeFileForMeals(dinnerForWeak,FileForDinner);
+                JOptionPane.showMessageDialog(dinnerMeal,"food pick for day "+d);
+            }
+        });
+        dmBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dinnerMeal.setVisible(false);
+                whichDay.setVisible(true);
+            }
+        });
+        dmBackM.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dinnerMeal.setVisible(false);
+                Admin ad = new Admin("");
+                ad.packAdmin();
+            }
+        });
+        dmBackM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.ALT_MASK));
     }
 
     public void packDinner(){
@@ -339,4 +636,13 @@ public class Meal {
         dinnerMeal.setJMenuBar(MDMenuBar);
         dinnerMeal.setVisible(true);
     }
+
+    public HashMap<Integer, String> getLunchForWeak() {
+        return lunchForWeak;
+    }
+
+    public HashMap<Integer, String> getDinnerForWeak() {
+        return dinnerForWeak;
+    }
 }
+

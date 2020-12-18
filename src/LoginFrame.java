@@ -61,7 +61,7 @@ public class LoginFrame {
        logPanel.add(pfPassword);
     }
 
-    private void makeButton() {
+    public void makeButton() {
         btnGet.setBounds(100,100,150,25);
         btnGet.addActionListener(
                 new ActionListener() {
@@ -105,7 +105,7 @@ public class LoginFrame {
                     }
 
                     if (myPass.equals(passwordd)) {
-                        System.out.print("done");
+                        System.out.println("done");
                         log.setVisible(false);
                         Admin ad = new Admin(myUser);
                         ad.packAdmin();
@@ -201,5 +201,9 @@ public class LoginFrame {
         makeButton();
         log.getContentPane().add(logPanel);
         log.setVisible(true);
+    }
+
+    public String getMyUser() {
+        return myUser;
     }
 }
