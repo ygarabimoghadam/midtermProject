@@ -20,6 +20,7 @@ public class Admin {
     private ChangePassword myChange = new ChangePassword();
     private Meal mealForWeak = new Meal();
     private Add addStudent = new Add();
+    View view = new View();
 
     public Admin(String us){
         myUser = us;
@@ -122,7 +123,31 @@ public class Admin {
         logOut.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        viewS.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 adm.setVisible(false);
+                String name = "C:\\\\Users\\\\Admin\\\\Desktop\\\\midtermProject\\\\myFiles\\\\students";
+                view.makeItems(name);
+            }
+        });
+        viewT.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                adm.setVisible(false);
+                String name = "C:\\\\Users\\\\Admin\\\\Desktop\\\\midtermProject\\\\myFiles\\\\teachers";
+                view.makeItems(name);
+            }
+        });
+        viewC.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                adm.setVisible(false);
+                String name = "C:\\\\Users\\\\Admin\\\\Desktop\\\\midtermProject\\\\myFiles\\\\courses";
+                view.makeItems(name);
             }
         });
     }

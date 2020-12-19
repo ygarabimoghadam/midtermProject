@@ -82,10 +82,10 @@ public class Meal {
       private JMenuItem dmBackM;
        boolean lunchH;
        boolean dinnerR;
-       private HashMap<Integer,String> lunchForWeak;
-       private HashMap<Integer,String> dinnerForWeak;
-       private int l;
-       private int d;
+       private HashMap<String, String> lunchForWeak;
+       private HashMap<String,String> dinnerForWeak;
+       private String l;
+       private String d;
        private LogOutAdmin load = new LogOutAdmin();
        private String FileForLunch = "C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\Lunch.txt";
        private String FileForDinner = "C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\Dinner.txt";
@@ -260,10 +260,10 @@ public class Meal {
                 whichDay.setVisible(false);
                 if(lunchH){
                     packLunch();
-                    l=1;}
+                    l="1";}
                 else{
                     packDinner();
-                     d=1;}
+                     d="1";}
             }
         });
 
@@ -273,10 +273,10 @@ public class Meal {
                 whichDay.setVisible(false);
                 if(lunchH){
                     packLunch();
-                    l=2;}
+                    l="2";}
                 else{
                     packDinner();
-                    d=2;}
+                    d="2";}
             }
         });
 
@@ -286,10 +286,10 @@ public class Meal {
                 whichDay.setVisible(false);
                 if(lunchH){
                     packLunch();
-                    l=3;}
+                    l="3";}
                 else{
                     packDinner();
-                    d=3;}
+                    d="3";}
             }
         });
 
@@ -299,10 +299,10 @@ public class Meal {
                 whichDay.setVisible(false);
                 if(lunchH){
                     packLunch();
-                    l=4;}
+                    l="4";}
                 else{
                     packDinner();
-                    d=4;}
+                    d="4";}
             }
         });
 
@@ -312,10 +312,10 @@ public class Meal {
                 whichDay.setVisible(false);
                 if(lunchH){
                     packLunch();
-                    l=5;}
+                    l="5";}
                 else{
                     packDinner();
-                    d=5;}
+                    d="5";}
             }
         });
         dBack.addActionListener(new ActionListener() {
@@ -393,11 +393,12 @@ public class Meal {
         MLMenu.add(lBack);
         MLMenu.add(lBackM);
         MLMenuBar.add(MLMenu);
+        lunchForWeak = load.readFiles(FileForLunch);
         bl1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lunchForWeak.put(l, ml1.getText());
-                load.writeFileForMeals(lunchForWeak,FileForLunch);
+                load.writeFiles(lunchForWeak,FileForLunch);
                 JOptionPane.showMessageDialog(lunchMeal, "food pick for day " +l);
 
 
@@ -407,7 +408,7 @@ public class Meal {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lunchForWeak.put(l, ml2.getText());
-                load.writeFileForMeals(lunchForWeak,FileForLunch);
+                load.writeFiles(lunchForWeak,FileForLunch);
                 JOptionPane.showMessageDialog(lunchMeal,"food pick for day "+l);
 
             }
@@ -417,7 +418,7 @@ public class Meal {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lunchForWeak.put(l, ml3.getText());
-                load.writeFileForMeals(lunchForWeak,FileForLunch);
+                load.writeFiles(lunchForWeak,FileForLunch);
                 JOptionPane.showMessageDialog(lunchMeal,"food pick for day "+l);
 
             }
@@ -427,7 +428,7 @@ public class Meal {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lunchForWeak.put(l, ml4.getText());
-                load.writeFileForMeals(lunchForWeak,FileForLunch);
+                load.writeFiles(lunchForWeak,FileForLunch);
                 JOptionPane.showMessageDialog(lunchMeal,"food pick for day "+l);
 
             }
@@ -437,7 +438,7 @@ public class Meal {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lunchForWeak.put(l, ml5.getText());
-                load.writeFileForMeals(lunchForWeak,FileForLunch);
+                load.writeFiles(lunchForWeak,FileForLunch);
                 JOptionPane.showMessageDialog(lunchMeal,"food pick for day "+l);
 
             }
@@ -447,7 +448,7 @@ public class Meal {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lunchForWeak.put(l, ml6.getText());
-                load.writeFileForMeals(lunchForWeak,FileForLunch);
+                load.writeFiles(lunchForWeak,FileForLunch);
                 JOptionPane.showMessageDialog(lunchMeal,"food pick for day "+l);
 
             }
@@ -457,7 +458,7 @@ public class Meal {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lunchForWeak.put(l, ml7.getText());
-                load.writeFileForMeals(lunchForWeak,FileForLunch);
+                load.writeFiles(lunchForWeak,FileForLunch);
                 JOptionPane.showMessageDialog(lunchMeal,"food pick for day "+l);
 
             }
@@ -467,7 +468,7 @@ public class Meal {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lunchForWeak.put(l, ml1.getText());
-                load.writeFileForMeals(lunchForWeak,FileForLunch);
+                load.writeFiles(lunchForWeak,FileForLunch);
                 JOptionPane.showMessageDialog(lunchMeal,"food pick for day "+l);
 
             }
@@ -551,7 +552,7 @@ public class Meal {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dinnerForWeak.put(d, md1.getText());
-                load.writeFileForMeals(dinnerForWeak,FileForDinner);
+                load.writeFiles(dinnerForWeak,FileForDinner);
                 JOptionPane.showMessageDialog(dinnerMeal,"food pick for day "+d);
             }
         });
@@ -559,7 +560,7 @@ public class Meal {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dinnerForWeak.put(d, md2.getText());
-                load.writeFileForMeals(dinnerForWeak,FileForDinner);
+                load.writeFiles(dinnerForWeak,FileForDinner);
                 JOptionPane.showMessageDialog(dinnerMeal,"food pick for day "+d);
             }
         });
@@ -567,7 +568,7 @@ public class Meal {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dinnerForWeak.put(d, md3.getText());
-                load.writeFileForMeals(dinnerForWeak,FileForDinner);
+                load.writeFiles(dinnerForWeak,FileForDinner);
                 JOptionPane.showMessageDialog(dinnerMeal,"food pick for day "+d);
             }
         });
@@ -575,7 +576,7 @@ public class Meal {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dinnerForWeak.put(d, md4.getText());
-                load.writeFileForMeals(dinnerForWeak,FileForDinner);
+                load.writeFiles(dinnerForWeak,FileForDinner);
                 JOptionPane.showMessageDialog(dinnerMeal,"food pick for day "+d);
             }
         });
@@ -583,7 +584,7 @@ public class Meal {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dinnerForWeak.put(d, md5.getText());
-                load.writeFileForMeals(dinnerForWeak,FileForDinner);
+                load.writeFiles(dinnerForWeak,FileForDinner);
                 JOptionPane.showMessageDialog(dinnerMeal,"food pick for day "+d);
             }
         });
@@ -591,7 +592,7 @@ public class Meal {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dinnerForWeak.put(d, md6.getText());
-                load.writeFileForMeals(dinnerForWeak,FileForDinner);
+                load.writeFiles(dinnerForWeak,FileForDinner);
                 JOptionPane.showMessageDialog(dinnerMeal,"food pick for day "+d);
             }
         });
@@ -599,7 +600,7 @@ public class Meal {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dinnerForWeak.put(d, md7.getText());
-                load.writeFileForMeals(dinnerForWeak,FileForDinner);
+                load.writeFiles(dinnerForWeak,FileForDinner);
                 JOptionPane.showMessageDialog(dinnerMeal,"food pick for day "+d);
             }
         });
@@ -607,7 +608,7 @@ public class Meal {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dinnerForWeak.put(d, md8.getText());
-                load.writeFileForMeals(dinnerForWeak,FileForDinner);
+                load.writeFiles(dinnerForWeak,FileForDinner);
                 JOptionPane.showMessageDialog(dinnerMeal,"food pick for day "+d);
             }
         });
@@ -637,12 +638,5 @@ public class Meal {
         dinnerMeal.setVisible(true);
     }
 
-    public HashMap<Integer, String> getLunchForWeak() {
-        return lunchForWeak;
-    }
-
-    public HashMap<Integer, String> getDinnerForWeak() {
-        return dinnerForWeak;
-    }
 }
 

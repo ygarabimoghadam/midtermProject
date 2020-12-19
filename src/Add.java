@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Add {
     private JFrame addS;
@@ -25,9 +26,11 @@ public class Add {
     private JButton backT;
     private ArrayList<StudentInCourses> students = new ArrayList<>();
     private ArrayList<TeacheInCourses> teachers = new ArrayList<>();
+    private HashMap<String , String> newStudents = new HashMap<>();
+    private HashMap<String , String> newTeachers = new HashMap<>();
     private LogOutAdmin load = new LogOutAdmin();
-    private int counterS = 1;
-    private int counterT = 1;
+    private int counterS ;
+    private int counterT ;
 
     public Add() {
         addS = new JFrame("portal/add section");
@@ -75,30 +78,34 @@ public class Add {
         addButtonS.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String forPassword = "C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\myStudent.txt";
                 String user = usernameS.getText();
                 String passs = passwordS.getText();
-                for (StudentInCourses s : students) {
-                    if (s.getUsername().equals(user)) {
-                        JOptionPane.showMessageDialog(addS, "this username have been used");
-                        passwordS.setText("");
-                        usernameS.setText("");
-                    }
-                }
+                newStudents = load.readFiles(forPassword);
                 if (user.equals("") || passs.equals("")) {
                     JOptionPane.showMessageDialog(addS, "please enter probably");
                 }
                 if (passs.length() < 8) {
                     JOptionPane.showMessageDialog(addS, "password must at least have 6 chars");
                     passwordS.setText("");
-                } else if (passs.length() >= 8 || !(user.equals("")) || !(passs.equals(""))) {
+                }
+                if (newStudents.containsKey(user)) {
+                    JOptionPane.showMessageDialog(addS, "this username have been used");
+                    passwordS.setText("");
+                    usernameS.setText("");
+                } else if (passs.length() >= 8 || !(user.equals("")) || !(passs.equals("")) && !(newStudents.containsKey(user))) {
                     JOptionPane.showMessageDialog(addS, "Student saved");
                     passwordS.setText("");
                     usernameS.setText("");
                     StudentInCourses s1 = new StudentInCourses(user, passs);
-                    students.add(s1);
+                    newStudents.put(user,passs);
+                    load.writeFiles(newStudents,forPassword);
+                    String name = "C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\counterS.txt";
+                    counterS = load.readCounter(name);
                     String fileName = "C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\students\\student" + counterS + ".txt";
                     load.writeSerialize(fileName, s1);
                     counterS++;
+                    load.writeCounter(name , counterS);
                 }
             }
         });
@@ -145,14 +152,15 @@ public class Add {
         addButtonT.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String forPassword = "C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\myTeacher.txt";
                 String user = usernameT.getText();
                 String passs = passwordT.getText();
-                for (TeacheInCourses t : teachers) {
-                    if (t.getUsername().equals(user)) {
+                newTeachers = load.readFiles(forPassword);
+                    if (newTeachers.containsKey(user)) {
                         JOptionPane.showMessageDialog(addT, "this username have been used");
                         passwordT.setText("");
                         usernameT.setText("");
-                    }
+
                 }
                 if (user.equals("") || passs.equals("")) {
                     JOptionPane.showMessageDialog(addT, "please enter probably");
@@ -160,22 +168,26 @@ public class Add {
                 if (passs.length() < 8) {
                     JOptionPane.showMessageDialog(addT, "password must at least have 6 chars");
                     passwordT.setText("");
-                } else if (passs.length() >= 8 || !(user.equals("")) || !(passs.equals(""))) {
+                } else if (passs.length() >= 8 || !(user.equals("")) || !(passs.equals("")) && !(newTeachers.containsKey(user))) {
                     JOptionPane.showMessageDialog(addT, "teacher saved");
                     passwordT.setText("");
                     usernameT.setText("");
                     TeacheInCourses t1 = new TeacheInCourses(user, passs);
-                    teachers.add(t1);
+                    newTeachers.put(user,passs);
+                    load.writeFiles(newTeachers,forPassword);
+                    String name = "C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\CounterT.txt";
+                    counterT = load.readCounter(name);
                     String fileName = "C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\teachers\\teacher" + counterT + ".txt";
                     load.writeSerialize(fileName, t1);
                     counterT++;
+                    load.writeCounter(name ,counterT);
                 }
             }
         });
-        backS.addActionListener(new ActionListener() {
+        backT.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addS.setVisible(false);
+                addT.setVisible(false);
                 Admin ad = new Admin("");
                 ad.packAdmin();
             }
