@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Student {
 
@@ -12,9 +14,13 @@ public class Student {
     private JButton seeMeals;
     private JButton chooseClass;
     private JButton logOut;
+    private String user ;
+    private ChangePassword change = new ChangePassword();
+    private AccountPlus accountPlus = new AccountPlus();
+    private MealForStudent meal = new MealForStudent();
 
-    public Student(){
-
+    public Student(String name){
+        user = name;
         stud = new JFrame("Portal/student section");
         studPanel = new JPanel();
         type = new JTextField("Student section:choose ");
@@ -57,9 +63,48 @@ public class Student {
         studPanel.add(logOut);
     }
 
+    private void actionButton(){
+        changePass.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                stud.setVisible(false);
+                change.packPass(user);
+            }
+        });
+        changeUsername.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                stud.setVisible(false);
+                change.packUser(user);
+            }
+        });
+        logOut.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        chargeAccount.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                stud.setVisible(false);
+                accountPlus.packCharge();
+            }
+        });
+        seeMeals.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                stud.setVisible(false);
+                meal.packMeal();
+
+            }
+        });
+    }
+
     public void packStudent(){
         makeFrame();
         makeButton();
+        actionButton();
         stud.getContentPane().add(studPanel);
         studPanel.setBackground(Color.black);
         stud.setVisible(true);

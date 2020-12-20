@@ -1,9 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
 import java.util.HashMap;
-import java.util.Map;
 
 public class ChangePassword {
     private JFrame change ;
@@ -19,6 +17,8 @@ public class ChangePassword {
     private String pr;
     private String newPassword;
     private HashMap<String,String> myAdmins;
+    private HashMap<String,String> myStudents = new HashMap<>();
+    private HashMap<String,String> myTeachers = new HashMap<>();
     private JFrame changeU;
     private JPanel UPanel;
     private JButton changeUButton;
@@ -56,13 +56,35 @@ public class ChangePassword {
          back.addActionListener(new ActionListener() {
              @Override
              public void actionPerformed(ActionEvent e)  {
+
                  if(name.startsWith("a")){
+                     String fileName = "C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\myAdmin.txt";
+                     myAdmins = load.readFiles(fileName);
                      Admin ad = new Admin(name);
                      change.setVisible(false);
                      ad.packAdmin();
                      myAdmins.put(name,newPassword);
-                     String fileName = "C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\myAdmin.ser";
                     load.writeFiles(myAdmins,fileName);
+                 }
+
+                 if(name.startsWith("9")){
+                     String fileName = "C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\myStudent.txt";
+                     myStudents = load.readFiles(fileName);
+                     Student s = new Student(name);
+                     change.setVisible(false);
+                     s.packStudent();
+                     myStudents.put(name,newPassword);
+                     load.writeFiles(myStudents,fileName);
+                 }
+
+                 if(name.startsWith("3")){
+                     String fileName = "C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\myTeacher.txt";
+                     myTeachers = load.readFiles(fileName);
+                     Teacher t = new Teacher(name);
+                     change.setVisible(false);
+                     t.packTeacher();
+                     myAdmins.put(name,newPassword);
+                     load.writeFiles(myStudents,fileName);
                  }
              }
          });
@@ -148,16 +170,53 @@ public class ChangePassword {
         changeUButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                nextUser = newUser.getText();
-                if(myAdmins.containsKey(nextUser)){
-                    JOptionPane.showMessageDialog(changeU, "this username is chosen before");
+                if(n.startsWith("a")) {
+                    String fileName = "C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\myAdmin.txt";
+                    myAdmins = load.readFiles(fileName);
+                    nextUser = newUser.getText();
+                    if (myAdmins.containsKey(nextUser)) {
+                        JOptionPane.showMessageDialog(changeU, "this username is chosen before");
+                        newUser.setText("");
+                    }
+                    if (nextUser.equals("")) {
+                        JOptionPane.showMessageDialog(changeU, "please enter username first");
+
+                    } else if (!(myAdmins.containsKey(nextUser))) {
+                        JOptionPane.showMessageDialog(changeU, "username change");
+                        realUser = nextUser;
+                    }
                 }
-                if(nextUser.equals("")){
-                    JOptionPane.showMessageDialog(changeU,"please enter username first");
+                if(n.startsWith("9")) {
+                    String fileName = "C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\myStudent.txt";
+                    myStudents = load.readFiles(fileName);
+                    nextUser = newUser.getText();
+                    if (myStudents.containsKey(nextUser)) {
+                        JOptionPane.showMessageDialog(changeU, "this username is chosen before");
+                        newUser.setText("");
+                    }
+
+                    if (nextUser.equals("")) {
+                        JOptionPane.showMessageDialog(changeU, "please enter username first");
+
+                    } else if (!(myStudents.containsKey(nextUser))) {
+                        JOptionPane.showMessageDialog(changeU, "username change");
+                        realUser = nextUser;
+                    }
                 }
-                else if(!(myAdmins.containsKey(nextUser))){
-                    JOptionPane.showMessageDialog(changeU,"username change");
-                    realUser= nextUser;
+                if(n.startsWith("3")) {
+                    String fileName = "C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\myTeacher.txt";
+                    myTeachers = load.readFiles(fileName);
+                    nextUser = newUser.getText();
+                    if (myTeachers.containsKey(nextUser)) {
+                        JOptionPane.showMessageDialog(changeU, "this username is chosen before");
+                        newUser.setText("");
+                    }
+                    if (nextUser.equals("")) {
+                        JOptionPane.showMessageDialog(changeU, "please enter username first");
+                    } else if (!(myTeachers.containsKey(nextUser))) {
+                        JOptionPane.showMessageDialog(changeU, "username change");
+                        realUser = nextUser;
+                    }
                 }
             }
         });
@@ -166,13 +225,39 @@ public class ChangePassword {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (n.startsWith("a")) {
+                    String fileName = "C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\myAdmin.txt";
+                    myAdmins = load.readFiles(fileName);
                     Admin ad = new Admin(n);
                     changeU.setVisible(false);
                     ad.packAdmin();
                     String p = myAdmins.get(n);
                     myAdmins.remove(n);
                     myAdmins.put(realUser,p);
-                    System.out.println(myAdmins);
+                    load.writeFiles(myAdmins,fileName);
+                }
+
+                if (n.startsWith("9")) {
+                    String fileName = "C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\myStudent.txt";
+                    myStudents = load.readFiles(fileName);
+                    Student s = new Student(n);
+                    changeU.setVisible(false);
+                    s.packStudent();
+                    String p = myStudents.get(n);
+                    myStudents.remove(n);
+                    myStudents.put(realUser,p);
+                    load.writeFiles(myStudents,fileName);
+                }
+
+                if (n.startsWith("3")) {
+                    String fileName = "C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\myTeacher.txt";
+                    myTeachers = load.readFiles(fileName);
+                    Teacher t = new Teacher(n);
+                    changeU.setVisible(false);
+                    t.packTeacher();
+                    String p = myTeachers.get(n);
+                    myTeachers.remove(n);
+                    myTeachers.put(realUser,p);
+                    load.writeFiles(myTeachers,fileName);
                 }
             }
         });
@@ -184,8 +269,5 @@ public class ChangePassword {
         changeU.setVisible(true);
     }
 
-    public HashMap<String, String> getMyAdmins() {
-        return myAdmins;
-    }
 
 }

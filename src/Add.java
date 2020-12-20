@@ -24,9 +24,8 @@ public class Add {
     private JButton addButtonT;
     private JButton backS;
     private JButton backT;
-    private ArrayList<StudentInCourses> students = new ArrayList<>();
-    private ArrayList<TeacheInCourses> teachers = new ArrayList<>();
     private HashMap<String , String> newStudents = new HashMap<>();
+    private HashMap<String , String> charge = new HashMap<>();
     private HashMap<String , String> newTeachers = new HashMap<>();
     private LogOutAdmin load = new LogOutAdmin();
     private int counterS ;
@@ -79,9 +78,11 @@ public class Add {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String forPassword = "C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\myStudent.txt";
+                String forCharge = "C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\charge.txt";
                 String user = usernameS.getText();
                 String passs = passwordS.getText();
                 newStudents = load.readFiles(forPassword);
+                charge = load.readFiles(forCharge);
                 if (user.equals("") || passs.equals("")) {
                     JOptionPane.showMessageDialog(addS, "please enter probably");
                 }
@@ -99,7 +100,9 @@ public class Add {
                     usernameS.setText("");
                     StudentInCourses s1 = new StudentInCourses(user, passs);
                     newStudents.put(user,passs);
+                    charge.put(user,"0");
                     load.writeFiles(newStudents,forPassword);
+                    load.writeFiles(charge,forCharge);
                     String name = "C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\counterS.txt";
                     counterS = load.readCounter(name);
                     String fileName = "C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\students\\student" + counterS + ".txt";

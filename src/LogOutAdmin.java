@@ -46,29 +46,12 @@ public class LogOutAdmin {
                     map.put(users.get(z),pass.get(z));
 
             }
-            System.out.println(map);
             scanner.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         return map ;
     }
-
-  /*  public void writeFileForMeals(HashMap<Integer,String> hashMap,String fileName){
-        try {
-            File fileTwo=new File(fileName);
-            FileOutputStream fos=new FileOutputStream(fileTwo);
-            PrintWriter pw=new PrintWriter(fos);
-
-            for(Map.Entry<Integer,String> m :hashMap.entrySet()){
-                pw.println(m.getKey());
-                pw.println(m.getValue());
-            }
-            pw.flush();
-            pw.close();
-            fos.close();
-        } catch(Exception e) {}
-    }*/
 
     public void writeSerialize(String name,Object ob){
         String fileName = name;

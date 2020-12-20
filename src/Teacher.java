@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Teacher {
 
@@ -12,9 +14,11 @@ public class Teacher {
     private JButton addScore;
     private JButton addC;
     private JButton logOut;
+    private String user ;
+    private ChangePassword change = new ChangePassword();
 
-    public Teacher(){
-
+    public Teacher(String name){
+        user = name;
         teach = new JFrame("Portal/teacher section");
         teachPanel = new JPanel();
         type = new JTextField("Teacher section:choose ");
@@ -57,9 +61,33 @@ public class Teacher {
         teachPanel.add(logOut);
     }
 
+    private  void ActionButton(){
+        changePass.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                teach.setVisible(false);
+                change.packPass(user);
+            }
+        });
+        changeUsername.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                teach.setVisible(false);
+                change.packUser(user);
+            }
+        });
+        logOut.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+    }
+
     public void packTeacher(){
         makeFrame();
         makeButton();
+        ActionButton();
         teach.getContentPane().add(teachPanel);
         teachPanel.setBackground(Color.black);
         teach.setVisible(true);

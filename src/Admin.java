@@ -76,7 +76,6 @@ public class Admin {
         logOut.setBounds(120,280,150,25);
         logOut.setBackground(Color.MAGENTA);
         adPanel.add(logOut);
-
     }
 
     private void buttonActions() {

@@ -90,8 +90,6 @@ public class View {
             if (eve.getClickCount() == 2) {
                 int index = directoryList.locationToIndex(eve.getPoint());
                 System.out.println("Item " + index + " is clicked...");
-                //TODO: Phase1: Click on file is handled... Just load content into JTextArea
-                // done
                 File curr[] = files;
                 String content = null;
                 try {

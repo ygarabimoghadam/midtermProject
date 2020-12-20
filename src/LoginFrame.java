@@ -105,20 +105,16 @@ public class LoginFrame {
                     }
 
                     if (myPass.equals(passwordd)) {
-                        System.out.println("done");
                         log.setVisible(false);
                         Admin ad = new Admin(myUser);
                         ad.packAdmin();
-                        //add new frame here
                     }
                     else{
                         JOptionPane.showMessageDialog(log,
                                 "Wrong pass.try again!");
                         userText.setText("");
                         pfPassword.setText("");
-
                     }
-
                 }
 
                 else if((section.getText()).equals("  Teacher section")){
@@ -137,20 +133,16 @@ public class LoginFrame {
                     }
 
                     if (myPass.equals(passwordd)) {
-                        System.out.print("done");
                         log.setVisible(false);
-                        Teacher myTeacher = new Teacher();
+                        Teacher myTeacher = new Teacher(myUser);
                         myTeacher.packTeacher();
-                        //add new frame here
                     }
                     else{
                         JOptionPane.showMessageDialog(log,
                                 "Wrong pass.try again!");
                         userText.setText("");
                         pfPassword.setText("");
-
                     }
-
                 }
 
                 else if((section.getText()).equals("  Student section")){
@@ -169,12 +161,9 @@ public class LoginFrame {
 
                     if (myPass.equals(passwordd)) {
 
-                        System.out.print("done");
-
                         log.setVisible(false);
-                        Student myStudent = new Student();
+                        Student myStudent = new Student(myUser);
                         myStudent.packStudent();
-                        //add new frame here
                     }
 
                     else{
@@ -201,9 +190,5 @@ public class LoginFrame {
         makeButton();
         log.getContentPane().add(logPanel);
         log.setVisible(true);
-    }
-
-    public String getMyUser() {
-        return myUser;
     }
 }

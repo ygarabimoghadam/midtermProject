@@ -41,9 +41,8 @@ public class StudentInCourses implements Serializable  {
         return "student{" +
                 "username='" + username + '\'' +"\n"+
                 ", password='" + password + '\'' +"\n"+
-                ", average=" + average +"\n"+
-                ", charge=" + charge +"\n"+
-                ", myCourses=" + myCourses +"\n"+
                 '}';
     }
+
+
 }
