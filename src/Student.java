@@ -3,6 +3,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * menu for student / gui and logic
+ */
 public class Student {
 
     private JFrame stud ;
@@ -63,6 +66,9 @@ public class Student {
         studPanel.add(logOut);
     }
 
+    /**
+     * actions and logics for buttons for menu
+     */
     private void actionButton(){
         changePass.addActionListener(new ActionListener() {
             @Override
@@ -81,7 +87,10 @@ public class Student {
         logOut.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                stud.setVisible(false);
+                choiceOfType choice = new choiceOfType();
+                choice.makeItems();
+
             }
         });
         chargeAccount.addActionListener(new ActionListener() {
@@ -101,6 +110,9 @@ public class Student {
         });
     }
 
+    /**
+     * show gui
+     */
     public void packStudent(){
         makeFrame();
         makeButton();

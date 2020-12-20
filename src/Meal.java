@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 
+/**
+ * set meals by admin . for lunch and dinner .
+ */
 public class Meal {
    private JFrame whichMeal;
    private JPanel whmPanel;
@@ -213,8 +216,7 @@ public class Meal {
         whichMeal.getContentPane().add(whmPanel);
         whichMeal.setJMenuBar(menuBar);
         whichMeal.setVisible(true);
-
-    }
+       }
 
     private void makeItemForDays(){
 

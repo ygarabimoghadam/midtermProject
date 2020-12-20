@@ -2,9 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * add student and teacher by admin
+ */
 public class Add {
     private JFrame addS;
     private JFrame addT;
@@ -52,6 +54,9 @@ public class Add {
         backT = new JButton("back");
     }
 
+    /**
+     * items and actions for add students
+     */
     private void makeItemsForStudents() {
 
         addS.setSize(300, 220);
@@ -123,6 +128,9 @@ public class Add {
         });
     }
 
+    /**
+     * gui for addStudent
+     */
     public void packAddStudents() {
         makeItemsForStudents();
         panelS.setBackground(Color.gray);
@@ -130,6 +138,9 @@ public class Add {
         addS.setVisible(true);
     }
 
+    /**
+     * buttons and actions for add teacher
+     */
     private void makeItemsForTeachers() {
 
         addT.setSize(300, 220);
@@ -197,6 +208,9 @@ public class Add {
         });
     }
 
+    /**
+     * gui for teachers
+     */
     public void packAddTeachers() {
         makeItemsForTeachers();
         panelT.setBackground(Color.gray);

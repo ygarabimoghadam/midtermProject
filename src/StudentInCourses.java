@@ -1,6 +1,9 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * creat objects when admins add students and write object in files.
+ */
 public class StudentInCourses implements Serializable  {
     private String username;
     private String password;

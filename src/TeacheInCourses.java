@@ -1,5 +1,8 @@
 import java.io.Serializable;
 
+/**
+ * make objects for every teachers taht been added by admin.
+ */
 public class TeacheInCourses implements Serializable {
     private String username;
     private String password;

@@ -4,8 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * write and read file for all the classes.also write objects
+ * write and read counter for students and teachers
+ */
 public class LogOutAdmin {
-
 
     public LogOutAdmin(){}
 

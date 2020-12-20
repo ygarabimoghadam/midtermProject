@@ -4,7 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
-
+/**
+ * chose meal by students for each day . lunch and dinner.
+ */
 public class MealForStudent {
     private JFrame whichMeal;
     private JPanel whmPanel;
@@ -151,7 +153,7 @@ public class MealForStudent {
 
     }
 
-    private void makeItemForDays(){
+    public void makeItemForDays(){
 
         whichDay.setSize(270,250);
         whdPanel.setLayout(null);
@@ -192,11 +194,12 @@ public class MealForStudent {
             public void actionPerformed(ActionEvent e) {
                 whichDay.setVisible(false);
                 if(lunchH){
+                    l="1";
                    packLunch();
-                    l="1";}
+                    }
                 else{
-                    packDinner();
-                    d="1";}
+                    d="1";
+                    packDinner();}
             }
         });
 
@@ -205,11 +208,11 @@ public class MealForStudent {
             public void actionPerformed(ActionEvent e) {
                 whichDay.setVisible(false);
                 if(lunchH){
-                   packLunch();
-                    l="2";}
+                    l="2";
+                   packLunch(); }
                 else{
-                    packDinner();
-                    d="2";}
+                    d="2";
+                    packDinner();}
             }
         });
 
@@ -218,11 +221,11 @@ public class MealForStudent {
             public void actionPerformed(ActionEvent e) {
                 whichDay.setVisible(false);
                 if(lunchH){
-                    packLunch();
-                    l="3";}
+                    l="3";
+                    packLunch();}
                 else{
-                    packDinner();
-                    d="3";}
+                    d="3";
+                    packDinner();}
             }
         });
 
@@ -231,11 +234,11 @@ public class MealForStudent {
             public void actionPerformed(ActionEvent e) {
                 whichDay.setVisible(false);
                 if(lunchH){
-                    packLunch();
-                    l="4";}
+                    l="4";
+                    packLunch();}
                 else{
-                    packDinner();
-                    d="4";}
+                    d="4";
+                    packDinner();}
             }
         });
 
@@ -244,11 +247,11 @@ public class MealForStudent {
             public void actionPerformed(ActionEvent e) {
                 whichDay.setVisible(false);
                 if(lunchH){
-                    packLunch();
-                    l="5";}
+                    l="5";
+                    packLunch();}
                 else{
-                    packDinner();
-                    d="5";}
+                    d="5";
+                    packDinner();}
             }
         });
         dBack.addActionListener(new ActionListener() {
@@ -262,8 +265,8 @@ public class MealForStudent {
             @Override
             public void actionPerformed(ActionEvent e) {
                 whichDay.setVisible(false);
-                Admin ad = new Admin("");
-                ad.packAdmin();
+                Student s = new Student("");
+                s.packStudent();
             }
         });
         dBackM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.ALT_MASK));
@@ -322,23 +325,21 @@ public class MealForStudent {
         food.setEditable(false);
         food.setBounds(5,40,80,25);
         food.setText(setMeal.get(l));
-        //food.setText("hi");
         food.setBackground(Color.PINK);
         lMeal.add(food);
         price.setBounds(100,40,80,25);
         price.setBackground(Color.MAGENTA);
         int p = priceOfFood();
-        String pp = Integer.toString(p);
+       String pp = Integer.toString(p);
         price.setText(pp);
-        //price.setText("bye");
         lMeal.add(price);
         choose.setBounds(5,80,100,25);
         choose.setBackground(Color.BLACK);
         lMeal.add(choose);
-        back.setBackground(Color.BLACK);
-        back.setBounds(120,80,100,25);
-        lMeal.add(back);
-        back.addActionListener(new ActionListener() {
+        lBack.setBackground(Color.BLACK);
+        lBack.setBounds(120,80,100,25);
+        lMeal.add(lBack);
+        lBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lunchMeal.setVisible(false);
@@ -355,6 +356,7 @@ public class MealForStudent {
                 if(m>=p){
                     int jadid = m -p;
                     String mu = Integer.toString(jadid);
+                    JOptionPane.showMessageDialog(lunchMeal, "done");
                     charges.put(n,mu);
                     logo.writeFiles(charges,fileN);
                 }
@@ -377,28 +379,28 @@ public class MealForStudent {
         int price = 0 ;
         String filename = "C:\\Users\\Admin\\Desktop\\midtermProject\\myFiles\\Dinner.txt";
         setMeal = logo.readFiles(filename);
-        if(setMeal.get(d).equals("pizza")){
-            price = 2000;
+        if(setMeal.get(d).equals("sibzamini")){
+            price = 1000;
         }
-        if(setMeal.get(d).equals("hamburger")){
-            price = 3000;
+        if(setMeal.get(d).equals("kuku")){
+            price = 1000;
         }
         if(setMeal.get(d).equals("sandwich")){
             price = 1000;
         }
-        if(setMeal.get(d).equals("ghorme sabzi")){
+        if(setMeal.get(d).equals("kotlet")){
             price = 4000;
         }
-        if(setMeal.get(d).equals("gheyme")){
+        if(setMeal.get(d).equals("makaruni")){
             price = 4000;
         }
-        if(setMeal.get(d).equals("abgusht")){
+        if(setMeal.get(d).equals("hot dog")){
             price = 5000;
         }
         if(setMeal.get(d).equals("juje")){
             price = 3000;
         }
-        if(setMeal.get(d).equals("kabab")){
+        if(setMeal.get(d).equals("tahchin")){
             price = 5000;
         }
         return  price;
@@ -419,7 +421,6 @@ public class MealForStudent {
         dfood.setEditable(false);
         dfood.setBounds(5,40,80,25);
         dfood.setText(setMeal.get(d));
-       // dfood.setText("hi");
         dfood.setBackground(Color.PINK);
         dMeal.add(food);
         dprice.setBounds(100,40,80,25);
@@ -427,7 +428,6 @@ public class MealForStudent {
         int p = priceOfFoodD();
         String pp = Integer.toString(p);
         dprice.setText(pp);
-        //price.setText("bye");
         dMeal.add(dprice);
         dchoose.setBounds(5,80,100,25);
         dchoose.setBackground(Color.BLACK);
@@ -452,6 +452,7 @@ public class MealForStudent {
                 if(m>=p){
                     int jadid = m -p;
                     String mu = Integer.toString(jadid);
+                    JOptionPane.showMessageDialog(dinnerMeal, "done");
                     charges.put(n,mu);
                     logo.writeFiles(charges,fileN);
                 }

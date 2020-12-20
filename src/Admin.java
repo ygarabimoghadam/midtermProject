@@ -3,6 +3,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * class that show menu for admin including logic and gui.
+ */
 public class Admin {
     private JFrame adm ;
     private JPanel adPanel;
@@ -37,6 +40,10 @@ public class Admin {
         addT = new JButton("Add Teacher");
         logOut = new JButton("Logout");
     }
+
+    /**
+     * make frame for gui for menu admin.
+     */
 
     private void makeFrame(){
         adm.setSize(400,350);
@@ -78,6 +85,10 @@ public class Admin {
         adPanel.add(logOut);
     }
 
+    /**
+     * logic for buttons.
+     */
+
     private void buttonActions() {
         changePass.addActionListener(new ActionListener() {
             @Override
@@ -108,7 +119,6 @@ public class Admin {
             public void actionPerformed(ActionEvent e) {
                 adm.setVisible(false);
                 addStudent.packAddStudents();
-
             }
         });
 
@@ -122,7 +132,9 @@ public class Admin {
         logOut.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                adm.setVisible(false);
+                choiceOfType choice = new choiceOfType();
+                choice.makeItems();
             }
         });
         viewS.addActionListener(new ActionListener() {
@@ -151,6 +163,9 @@ public class Admin {
         });
     }
 
+    /**
+     * show gui /menu of admin .
+     */
     public void packAdmin(){
         makeFrame();
         makeButton();

@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.Scanner;
 
+/**
+ * make gui and logic for login frame for all types and also save them.
+ */
 public class LoginFrame {
    private JFrame log ;
    private JPanel logPanel ;
@@ -182,6 +185,9 @@ public class LoginFrame {
         section.setText(str);
     }
 
+    /**
+     * show gui
+     */
     public void pack(){
         MakeFrame();
         MakePanel();

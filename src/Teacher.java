@@ -3,6 +3,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * gui and logic for menu for teachers.
+ */
 public class Teacher {
 
     private JFrame teach ;
@@ -61,6 +64,9 @@ public class Teacher {
         teachPanel.add(logOut);
     }
 
+    /**
+     * actions and logics for buttons.
+     */
     private  void ActionButton(){
         changePass.addActionListener(new ActionListener() {
             @Override
@@ -79,11 +85,24 @@ public class Teacher {
         logOut.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                teach.setVisible(false);
+                choiceOfType choice = new choiceOfType();
+                choice.makeItems();
+            }
+        });
+        addC.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                teach.setVisible(false);
+                FrameForCourse frame = new FrameForCourse();
+                frame.packOne();
             }
         });
     }
 
+    /**
+     * show gui
+     */
     public void packTeacher(){
         makeFrame();
         makeButton();

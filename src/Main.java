@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import static java.lang.System.err;
 
+/**
+ * run the program and also choose write look and feel.
+ */
 public class Main extends Component {
 
     public void changeLookAndFeel() {
@@ -40,5 +43,4 @@ public class Main extends Component {
         choiceOfType choice = new choiceOfType();
         choice.makeItems();
     }
-
 }

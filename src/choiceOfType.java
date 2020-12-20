@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * gui and logic for choose type between admin , students and teachers.
+ */
 public class choiceOfType {
     private JFrame selection ;
     private JPanel panel;
@@ -19,6 +22,9 @@ public class choiceOfType {
         select = new JTextArea("Select Your Type");
     }
 
+    /**
+     * make items and their logic
+     */
     public void makeItems(){
         selection.setSize(250,250);
         selection.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

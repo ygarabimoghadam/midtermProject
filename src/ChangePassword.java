@@ -3,6 +3,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 
+/**
+ * button for change pass and user for all type and also save in files
+ */
+
 public class ChangePassword {
     private JFrame change ;
     private JPanel changePanel ;
@@ -50,6 +54,11 @@ public class ChangePassword {
         userNAme = new JLabel("new Username:");
         newUser = new JTextField(20);
     }
+
+    /**
+     * make item for change pass for all types and also logic
+     * @param name name of the user
+     */
      public void makeItem(String name){
          back.setBounds(10,10,80,25);
          changePanel.add(back);
@@ -148,12 +157,20 @@ public class ChangePassword {
          });
     }
 
+    /**
+     * show gui for change pass
+     * @param name
+     */
     public void packPass(String name){
          makeItem(name);
          change.getContentPane().add(changePanel);
          change.setVisible(true);
     }
 
+    /**
+     * gui and logic for change user and also save in the file.
+     * @param n name of the user
+     */
     public void makeItemUsername(String n){
         changeU.setSize(300,120);
         changeU.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -263,6 +280,10 @@ public class ChangePassword {
         });
     }
 
+    /**
+     * show gui for change user.
+     * @param n
+     */
     public void packUser(String n){
         makeItemUsername(n);
         changeU.getContentPane().add(UPanel);

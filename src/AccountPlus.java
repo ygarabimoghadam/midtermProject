@@ -4,6 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 
+/**
+ * charge account for student
+ */
+
 public class AccountPlus {
     private JFrame charge;
     private JPanel chargePanel;
@@ -29,8 +33,11 @@ public class AccountPlus {
         idd = new JTextField(20);
     }
 
+    /**
+     * make buttons for gui for charge account
+     */
     private void makeItems(){
-        charge.setSize(270,150);
+        charge.setSize(270,200);
         chargePanel.setLayout(null);
         id.setBounds(5,5,80,25);
         chargePanel.add(id);
@@ -48,11 +55,13 @@ public class AccountPlus {
         numberOfCart.setLabelFor(number);
         chargePanel.add(number);
         charging.setBounds(5,120,100,25);
-
         charging.setBackground(new Color(250,0,210));
         chargePanel.add(charging);
     }
 
+    /**
+     * show gui for charge account
+     */
     public void packCharge(){
         makeItems();
         actionButton();
@@ -62,6 +71,9 @@ public class AccountPlus {
         charge.setVisible(true);
     }
 
+    /**
+     * logic and actions for buttons /charge account
+     */
     private void actionButton() {
         charging.addActionListener(new ActionListener() {
             @Override

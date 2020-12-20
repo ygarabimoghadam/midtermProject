@@ -10,6 +10,9 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * view students and teachers that registered by admin and for admin
+ */
 
 public class View {
     private JFrame view ;
@@ -31,8 +34,6 @@ public class View {
         menuBar = new JMenuBar();
         jmenu = new JMenu("File");
         back = new JMenuItem("back");
-
-
     }
 
     public void makeItems(String name){
